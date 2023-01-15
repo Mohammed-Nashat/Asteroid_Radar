@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+      <variable
+          name="asteriod"
+          type="com.udacity.asteroidradar.util.Asteroid" />
+        <variable
+            name="clickListener"
+            type="com.udacity.asteroidradar.adapters.AsteriodListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/app_background"
+        android:layout_margin="@dimen/spacing_normal"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onCick(asteriod)}">
+
+        <TextView
+
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="68744 (2001 KB67)"
+            app:nameText="@{asteriod}"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            style="@style/Subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="2022-08-02"
+            app:dateText="@{asteriod}"/>
+
+        <ImageView
+            android:id="@+id/im_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name"
+            tools:src="@drawable/ic_status_potentially_hazardous"
+            app:statusIcon="@{asteriod.potentiallyHazardous}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
